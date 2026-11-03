@@ -1,0 +1,13 @@
+# 디자인 토큰은 assets/style.css 의 :root 변수와 이 파일의 [theme] 두 곳에서만 정의한다.
+[theme]
+primaryColor = "#087F68"
+backgroundColor = "#F5F7F5"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#202824"
+font = "sans-serif"
+
+[client]
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false

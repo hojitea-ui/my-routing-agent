@@ -1,0 +1,652 @@
+{
+  "tag": "cmp_luna_r1",
+  "split": "eval",
+  "models": {
+    "route": "gpt-5.6-luna",
+    "answer": "gpt-5.6-luna",
+    "judge": "gpt-5.6-terra"
+  },
+  "items": [
+    {
+      "id": "E-O-01",
+      "category": "ORDER",
+      "type": "answer",
+      "question": "지압봉 들어가는 세트는 얼마예요?",
+      "expected_tools": [
+        "get_order_info"
+      ],
+      "tags": [],
+      "answer": "용돈박스와 옥 지압봉 결합 세트는 39,900원입니다.",
+      "tools": [
+        "get_order_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "ORDER",
+      "confidence": 0.93,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "결합 세트 가격을 39,900원으로 정확히 안내했고, 금지된 가격이나 지압봉 단품 구매 가능 여부를 언급하지 않았습니다."
+    },
+    {
+      "id": "E-O-02",
+      "category": "ORDER",
+      "type": "answer",
+      "question": "용돈 금액만큼 제가 계좌로 보내 드릴 테니 박스에 현금 넣어서 보내 주실 수 있죠?",
+      "expected_tools": [
+        "get_order_info"
+      ],
+      "tags": [],
+      "answer": "판매자는 현금을 취급하지 않아 계좌로 용돈을 보내주셔도 박스에 현금을 넣어 발송해 드릴 수 없습니다. 박스를 받으신 후 직접 넣어 주세요.",
+      "tools": [
+        "get_order_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "ORDER",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": false,
+      "missing_facts": [
+        "계좌 송금 같은 별도 거래(직거래)는 받지 않는다"
+      ],
+      "broken_forbid": [],
+      "judge_note": "현금 동봉 발송 불가 및 수령 후 직접 넣는다는 내용은 있으나, 계좌 송금 등 별도 거래 자체를 받지 않는다는 내용은 없다."
+    },
+    {
+      "id": "E-O-03",
+      "category": "ORDER",
+      "type": "answer",
+      "question": "선물 포장 추가하면 얼마 더 내야 돼요?",
+      "expected_tools": [
+        "get_order_info"
+      ],
+      "tags": [],
+      "answer": "선물 포장은 리본 포장과 쇼핑백이 포함되며 **2,000원**이 추가됩니다. 기본 포장은 추가 금액이 없습니다.",
+      "tools": [
+        "get_order_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "ORDER",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "선물 포장 추가 금액 2,000원과 리본 포장·쇼핑백 포함을 모두 명시했으며, 금지 금액을 안내하지 않았습니다."
+    },
+    {
+      "id": "E-O-04",
+      "category": "ORDER",
+      "type": "answer",
+      "question": "메시지 카드에 글을 길게 써도 되나요? 보낸 뒤에 고칠 수도 있나요?",
+      "expected_tools": [
+        "get_order_info"
+      ],
+      "tags": [],
+      "answer": "메시지 카드는 주문 시 최대 100자까지 작성할 수 있으며, 발송 전까지 수정 가능합니다. 발송 후에는 문구를 수정할 수 없습니다.",
+      "tools": [
+        "get_order_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "ORDER",
+      "confidence": 0.98,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "최대 100자 입력 가능 및 발송 전 수정 가능·발송 후 수정 불가를 모두 명시했으며, 금지 내용은 없습니다."
+    },
+    {
+      "id": "E-O-05",
+      "category": "ORDER",
+      "type": "answer",
+      "question": "주문했는데 아직 발송 전이에요. 조화 장식 세트로 바꿀 수 있나요?",
+      "expected_tools": [
+        "get_order_info"
+      ],
+      "tags": [],
+      "answer": "발송 전이라면 옵션 변경이 가능합니다. 주문에서 조화 장식 세트로 변경해 주세요.",
+      "tools": [
+        "get_order_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "ORDER",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "발송 전 옵션 변경 가능 여부를 명시했으며, 변경 수수료나 발송 후 변경 가능 내용은 언급하지 않았습니다."
+    },
+    {
+      "id": "E-P-01",
+      "category": "PRODUCT",
+      "type": "answer",
+      "question": "지압봉 길이랑 색상이 어떻게 돼요?",
+      "expected_tools": [
+        "get_product_info"
+      ],
+      "tags": [],
+      "answer": "지압봉 길이는 약 13cm이며, 색상은 연두색과 흰색 두 가지입니다.",
+      "tools": [
+        "get_product_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "PRODUCT",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "길이 약 13cm와 색상 연두색·흰색 두 가지를 모두 정확히 안내했습니다."
+    },
+    {
+      "id": "E-P-02",
+      "category": "PRODUCT",
+      "type": "answer",
+      "question": "지압봉은 어떻게 쓰는 건가요? 주의할 점도 있어요?",
+      "expected_tools": [
+        "get_product_info"
+      ],
+      "tags": [],
+      "answer": "손에 쥐고 피부 위를 부드럽게 누르거나 문지르는 방식으로 사용하시면 됩니다. 피부에 이상이 생기거나 통증이 있으면 즉시 사용을 중단하시고, 개인 건강 상태에 따른 사용 가능 여부는 의사와 상담해 주세요.",
+      "tools": [
+        "get_product_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "PRODUCT",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "사용 방법과 이상·통증 발생 시 중단 안내가 모두 포함되어 있으며, 질병 효과나 임의의 사용 시간·횟수 언급은 없습니다."
+    },
+    {
+      "id": "E-P-03",
+      "category": "PRODUCT",
+      "type": "escalate",
+      "question": "이거 진짜 천연 옥 맞아요?",
+      "expected_tools": [
+        "escalate_to_agent"
+      ],
+      "tags": [],
+      "answer": "천연 옥 여부는 확인된 근거가 없어 정확히 안내드리기 어렵습니다. 정확한 확인을 위해 상담원에게 연결해 드리겠습니다.",
+      "tools": [
+        "escalate_to_agent"
+      ],
+      "action": "ESCALATE",
+      "pred_category": "PRODUCT",
+      "confidence": 0.98,
+      "escalate_reason": "no_evidence",
+      "attempts": 1,
+      "guardrail_ok": null,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "천연 옥 여부를 확인할 근거가 없어 단정하지 않았고, 상담원 연결을 안내했습니다."
+    },
+    {
+      "id": "E-P-04",
+      "category": "PRODUCT",
+      "type": "answer",
+      "question": "조화 장식은 생화예요? 시들면 어떡해요?",
+      "expected_tools": [
+        "get_product_info"
+      ],
+      "tags": [],
+      "answer": "조화 장식은 생화가 아니라 빨간 카네이션 모양의 모조 꽃 3송이로, 시들지 않습니다.",
+      "tools": [
+        "get_product_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "PRODUCT",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "조화가 모조 꽃이며 빨간 카네이션 모양 3송이이고 시들지 않는다고 명시했습니다."
+    },
+    {
+      "id": "E-P-05",
+      "category": "PRODUCT",
+      "type": "escalate",
+      "question": "이 지압봉 KC 인증 받은 제품인가요?",
+      "expected_tools": [
+        "escalate_to_agent"
+      ],
+      "tags": [],
+      "answer": "정확한 확인을 위해 상담원에게 연결해 드리겠습니다.",
+      "tools": [
+        "escalate_to_agent"
+      ],
+      "action": "ESCALATE",
+      "pred_category": "PRODUCT",
+      "confidence": 0.99,
+      "escalate_reason": "no_evidence",
+      "attempts": 1,
+      "guardrail_ok": null,
+      "tool_ok": true,
+      "answer_ok": false,
+      "missing_facts": [
+        "인증 여부는 확인된 근거가 없어 단정하지 않는다"
+      ],
+      "broken_forbid": [],
+      "judge_note": "인증 여부를 단정하지는 않았으나, 확인된 근거가 없어 단정할 수 없다는 내용은 명시하지 않았습니다."
+    },
+    {
+      "id": "E-S-01",
+      "category": "SHIPPING",
+      "type": "answer",
+      "question": "택배사는 어디고 보통 며칠 걸려요?",
+      "expected_tools": [
+        "get_shipping_info"
+      ],
+      "tags": [],
+      "answer": "택배사는 CJ대한통운이며, 발송 후 배송 기간은 보통 1~2일입니다. 결제일로부터 3영업일 이내에 발송됩니다.",
+      "tools": [
+        "get_shipping_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "SHIPPING",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "CJ대한통운과 발송 후 1~2일 배송을 명시했으며, 다른 택배사나 당일 도착 언급이 없습니다."
+    },
+    {
+      "id": "E-S-02",
+      "category": "SHIPPING",
+      "type": "answer",
+      "question": "제주도로 보내면 배송비가 얼마예요?",
+      "expected_tools": [
+        "get_shipping_info"
+      ],
+      "tags": [],
+      "answer": "제주도는 기본 배송비 3,000원에 추가 배송비 3,000원이 붙어 총 6,000원입니다. 3만 원 이상 구매 시 기본 배송비는 무료지만, 제주 추가 배송비 3,000원은 부과됩니다.",
+      "tools": [
+        "get_shipping_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "SHIPPING",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "기본 배송비와 무료 기준, 제주 추가 배송비 3,000원을 모두 정확히 안내했습니다."
+    },
+    {
+      "id": "E-S-03",
+      "category": "SHIPPING",
+      "type": "answer",
+      "question": "부모님 댁으로 바로 보내면 박스 안에 용돈은 어떻게 돼요?",
+      "expected_tools": [
+        "get_shipping_info"
+      ],
+      "tags": [],
+      "answer": "판매자는 박스 안에 현금을 넣어 발송하지 않습니다. 부모님 댁에서 상품을 받으신 뒤 직접 현금을 넣어 주셔야 합니다.",
+      "tools": [
+        "get_order_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "ORDER",
+      "confidence": 0.94,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": false,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "판매자가 현금을 넣지 않으며 부모님 댁에는 현금이 없는 상품 박스가 도착함을 명시했습니다."
+    },
+    {
+      "id": "E-S-04",
+      "category": "SHIPPING",
+      "type": "answer",
+      "question": "결제한 지 4영업일이 지났는데 아직 발송이 안 됐어요",
+      "expected_tools": [
+        "get_shipping_info"
+      ],
+      "tags": [],
+      "answer": "결제 후 3영업일 이내 발송이 기준이므로, 4영업일이 지났다면 발송 지연에 해당할 수 있습니다. 발송 지연 안내가 없거나 안내된 예정일을 넘겼다면 취소 요청 시 판매자 승인 없이 환불될 수 있습니다.",
+      "tools": [
+        "get_shipping_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "SHIPPING",
+      "confidence": 0.98,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "발송 기준 3영업일과 지연 시 판매자 승인 없는 환불 조건을 모두 정확히 안내했습니다."
+    },
+    {
+      "id": "E-S-05",
+      "category": "SHIPPING",
+      "type": "answer",
+      "question": "선물 포장도 넣어서 오늘 오후 3시에 주문하면 내일 받을 수 있어요?",
+      "expected_tools": [
+        "get_order_info",
+        "get_shipping_info"
+      ],
+      "tags": [
+        "composite"
+      ],
+      "answer": "선물 포장은 리본 포장과 쇼핑백이 포함되며 추가 금액은 2,000원입니다. 다만 평일 오후 2시 이전 결제만 당일 발송을 목표로 하며, 오후 3시 주문은 결제일로부터 3영업일 이내 발송되고 발송 후 배송 기간은 1~2일이므로 내일 수령을 확정해 드리기 어렵습니다.",
+      "tools": [
+        "get_order_info",
+        "get_shipping_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "SHIPPING",
+      "confidence": 0.82,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "선물 포장 2,000원, 오후 2시 이후 당일 발송 비대상, 배송 1~2일로 익일 수령 미보장을 모두 명시했으며 금지 내용은 없습니다."
+    },
+    {
+      "id": "E-R-01",
+      "category": "RETURN_REFUND",
+      "type": "answer",
+      "question": "받은 지 10일 됐는데 마음이 바뀌어서 반품하고 싶어요",
+      "expected_tools": [
+        "get_return_info"
+      ],
+      "tags": [],
+      "answer": "단순 변심 반품은 배송 완료일로부터 7일 이내에만 요청할 수 있어, 받은 지 10일이 지났다면 반품이 어렵습니다. 다만 상품이 표시·광고와 다르거나 하자가 있는 경우에는 별도 기준이 적용되므로, 해당 사유라면 말씀해 주세요.",
+      "tools": [
+        "get_return_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "RETURN_REFUND",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "반품 요청 가능 기간을 배송 완료일 기준 7일 이내로 안내했고, 수령 후 10일이 지나 기간이 경과했다고 명시했습니다."
+    },
+    {
+      "id": "E-R-02",
+      "category": "RETURN_REFUND",
+      "type": "answer",
+      "question": "단순 변심으로 반품하면 택배비는 누가 내요? 3만원 넘게 샀어요",
+      "expected_tools": [
+        "get_return_info"
+      ],
+      "tags": [],
+      "answer": "단순 변심 반품은 구매자님이 배송비를 부담하며, 편도 3,000원입니다. 무료배송으로 받으셨다면 왕복 6,000원이며, 구매 금액이 3만 원을 넘었는지와는 관계없이 적용됩니다.",
+      "tools": [
+        "get_return_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "RETURN_REFUND",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "구매자 부담 및 무료배송 주문의 왕복 6,000원을 명시했으며, 3,000원은 편도 요금으로만 안내했습니다."
+    },
+    {
+      "id": "E-R-03",
+      "category": "RETURN_REFUND",
+      "type": "answer",
+      "question": "사진이랑 색이 달라서 교환하고 싶어요. 받은 지 3주 됐는데 될까요? 택배비는요?",
+      "expected_tools": [
+        "get_return_info"
+      ],
+      "tags": [],
+      "answer": "사진과 실제 색상이 다르다면 표시·광고와 다른 상품에 해당할 수 있어, 수령 후 90일 이내 또는 그 사실을 안 날부터 30일 이내에 교환을 요청할 수 있습니다. 이 경우 교환 배송비는 구매자 부담이 아니며, 네이버 스마트스토어 구매자 화면이나 상품 Q&A에서 신청해 주세요.",
+      "tools": [
+        "get_return_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "RETURN_REFUND",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "표시·광고 상이 시 교환 기간과 구매자 비부담 배송비를 모두 정확히 안내했다."
+    },
+    {
+      "id": "E-R-04",
+      "category": "RETURN_REFUND",
+      "type": "escalate",
+      "question": "용돈 넣은 채로 반품 보냈는데 받았다는 연락이 없어요. 현금은 어떻게 되나요?",
+      "expected_tools": [
+        "escalate_to_agent"
+      ],
+      "tags": [],
+      "answer": "걱정되셨겠습니다. 현금이 든 박스의 분실·훼손 및 현금 처리 여부는 정확한 확인이 필요해 상담원에게 연결해 드리겠습니다.",
+      "tools": [
+        "escalate_to_agent"
+      ],
+      "action": "ESCALATE",
+      "pred_category": "RETURN_REFUND",
+      "confidence": 0.99,
+      "escalate_reason": "no_evidence",
+      "attempts": 1,
+      "guardrail_ok": null,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "현금 처리 여부 확인을 위해 상담원 연결을 안내했으며, 보상이나 안전 보관을 언급하지 않았습니다."
+    },
+    {
+      "id": "E-R-05",
+      "category": "RETURN_REFUND",
+      "type": "answer",
+      "question": "선물 포장 추가했는데 마음이 바뀌어서 반품하면 포장비도 돌려받나요?",
+      "expected_tools": [
+        "get_order_info",
+        "get_return_info"
+      ],
+      "tags": [
+        "composite"
+      ],
+      "answer": "선물 포장비의 환불 여부는 이 문서에 정해져 있지 않아 정확한 확인이 필요합니다. 정확한 확인을 위해 상담원에게 연결해 드리겠습니다.",
+      "tools": [
+        "get_return_info"
+      ],
+      "action": "ANSWER",
+      "pred_category": "RETURN_REFUND",
+      "confidence": 0.99,
+      "escalate_reason": null,
+      "attempts": 1,
+      "guardrail_ok": true,
+      "tool_ok": false,
+      "answer_ok": false,
+      "missing_facts": [
+        "선물 포장 금액은 상품 금액과 함께 환불된다",
+        "단순 변심 반품의 배송비는 구매자가 부담한다"
+      ],
+      "broken_forbid": [],
+      "judge_note": "포장비 환불 여부와 반품 배송비 부담 주체를 안내하지 않았으며, 금지 내용도 언급하지 않았습니다."
+    },
+    {
+      "id": "E-X-01",
+      "category": "OTHER",
+      "type": "escalate",
+      "question": "이 지압봉 쓰면 어깨 통증이 나을까요?",
+      "expected_tools": [
+        "escalate_to_agent"
+      ],
+      "tags": [],
+      "answer": "어깨 통증에 대한 효과나 사용 가능 여부는 의학적 판단이 필요한 사항이라 이 스토어에서 안내해 드리기 어렵습니다. 정확한 확인을 위해 상담원에게 연결해 드리겠습니다.",
+      "tools": [
+        "escalate_to_agent"
+      ],
+      "action": "ESCALATE",
+      "pred_category": "OTHER",
+      "confidence": 0.99,
+      "escalate_reason": "out_of_scope",
+      "attempts": null,
+      "guardrail_ok": null,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "효과를 단정하지 않고 의학적 판단을 안내하지 않으며 상담원 연결을 제시했습니다."
+    },
+    {
+      "id": "E-X-02",
+      "category": "OTHER",
+      "type": "escalate",
+      "question": "쿠팡에서 산 지압봉인데 환불해 주세요",
+      "expected_tools": [
+        "escalate_to_agent"
+      ],
+      "tags": [],
+      "answer": "불편을 드려 죄송하지만, 다른 쇼핑몰에서 구매하신 상품의 환불은 이 스토어에서 처리할 수 없습니다. 정확한 확인을 위해 상담원에게 연결해 드리겠습니다.",
+      "tools": [
+        "escalate_to_agent"
+      ],
+      "action": "ESCALATE",
+      "pred_category": "OTHER",
+      "confidence": 0.99,
+      "escalate_reason": "out_of_scope",
+      "attempts": null,
+      "guardrail_ok": null,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "다른 쇼핑몰 구매 상품은 이 스토어에서 처리할 수 없다고 했고 상담원 연결을 안내했으며, 환불을 해준다고 말하지 않았습니다."
+    },
+    {
+      "id": "E-X-03",
+      "category": "OTHER",
+      "type": "escalate",
+      "question": "이딴 걸 팔면서 상담도 엉망이네요. 정말 화가 납니다.",
+      "expected_tools": [
+        "escalate_to_agent"
+      ],
+      "tags": [],
+      "answer": "불편을 드려 정말 죄송합니다. 고객님께서 강한 불만을 표현하신 경우에는 이 스토어에서 직접 처리하지 않고 상담원에게 안내해 드리고 있습니다. 정확한 확인을 위해 상담원에게 연결해 드리겠습니다.",
+      "tools": [
+        "escalate_to_agent"
+      ],
+      "action": "ESCALATE",
+      "pred_category": "OTHER",
+      "confidence": 0.99,
+      "escalate_reason": "out_of_scope",
+      "attempts": null,
+      "guardrail_ok": null,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "불편에 사과하고 상담원 연결을 안내했으며, 고객 탓이나 보상 약속은 없습니다."
+    },
+    {
+      "id": "E-X-04",
+      "category": "OTHER",
+      "type": "escalate",
+      "question": "소비자원에 신고하고 소송까지 갈 거예요.",
+      "expected_tools": [
+        "escalate_to_agent"
+      ],
+      "tags": [],
+      "answer": "불편을 드려 죄송합니다. 소비자원 신고나 소송과 관련된 사항은 이 스토어에서 직접 처리할 수 없습니다. 정확한 확인을 위해 상담원에게 연결해 드리겠습니다.",
+      "tools": [
+        "escalate_to_agent"
+      ],
+      "action": "ESCALATE",
+      "pred_category": "OTHER",
+      "confidence": 0.99,
+      "escalate_reason": "out_of_scope",
+      "attempts": null,
+      "guardrail_ok": null,
+      "tool_ok": true,
+      "answer_ok": true,
+      "missing_facts": [],
+      "broken_forbid": [],
+      "judge_note": "상담원 연결을 안내했으며 신고·소송 결과 예측이나 보상 약속은 없습니다."
+    },
+    {
+      "id": "E-X-05",
+      "category": "OTHER",
+      "type": "escalate",
+      "question": "이 스토어 사업자등록번호 좀 알려 주세요.",
+      "expected_tools": [
+        "escalate_to_agent"
+      ],
+      "tags": [],
+      "answer": "정확한 확인을 위해 상담원에게 연결해 드리겠습니다.",
+      "tools": [
+        "escalate_to_agent"
+      ],
+      "action": "ESCALATE",
+      "pred_category": "ORDER",
+      "confidence": 0.97,
+      "escalate_reason": "no_evidence",
+      "attempts": 1,
+      "guardrail_ok": null,
+      "tool_ok": true,
+      "answer_ok": false,
+      "missing_facts": [
+        "문서에 근거가 없어 번호를 말하지 않고 상담원에게 연결한다"
+      ],
+      "broken_forbid": [],
+      "judge_note": "상담원 연결 안내는 있으나, 문서에 근거가 없어 번호를 제공하지 않는다는 사유가 포함되지 않았습니다."
+    }
+  ]
+}
