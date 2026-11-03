@@ -21,7 +21,7 @@ from typing import List
 from langchain.chat_models import init_chat_model
 from pydantic import BaseModel, Field
 
-from agent import run_agent
+from agent import require_api_key, run_agent
 
 BASE = Path(__file__).parent
 GOLDEN = BASE / "data" / "goldenset.json"
@@ -201,6 +201,7 @@ def main():
     ap.add_argument("--validate-judge", action="store_true")
     ap.add_argument("--rejudge", nargs="+", metavar="TAG", help="저장된 결과를 현재 평가셋으로 다시 채점")
     args = ap.parse_args()
+    require_api_key()
     if args.rejudge:
         rejudge(args.rejudge)
         return

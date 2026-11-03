@@ -20,38 +20,66 @@
 | 답변 적절성 (필수 사실을 모두 담고 금지 사항을 어기지 않음) | 21/25 (84%), 두 번 모두 |
 | 넘기기가 정답인 8건 | 도구 8/8 |
 
-## 빠른 시작
+## 실행 방법 (채점자용, 약 3분)
+
+> **키가 없어도 볼 수 있는 것**: [REPORT.md](REPORT.md)(설계·측정·구조도), [results/](results/)(측정 결과 원본), 아래 ①②번 명령.
+> **OpenAI API 키가 있으면**: ③데모와 ④측정 재현까지 모두 실행할 수 있어요.
+
+### 0. 준비물
+
+| 항목 | 내용 |
+|---|---|
+| Python | 3.14.7에서 확인했어요. 다른 버전은 확인하지 못했어요. |
+| OpenAI API 키 | ③④번에만 필요해요. 모델 호출 비용은 평가 한 번에 아주 적어요. |
+| 네트워크 | 모델 호출과 데모의 폰트(Pretendard) 로딩에 써요. |
+
+### 1. 설치
 
 ```bash
+git clone https://github.com/hojitea-ui/my-routing-agent.git
+cd my-routing-agent
 pip install -r requirements.txt
 ```
 
-`.env.example`을 `.env`로 복사한 뒤 `OPENAI_API_KEY`를 채워요. `.env`는 저장소에 올라가지 않아요.
+### 2. 키 설정 (③④번만)
 
 ```bash
-cp .env.example .env          # Windows 명령 프롬프트: copy .env.example .env
+cp .env.example .env            # Windows: copy .env.example .env
 ```
 
-```bash
-python agent.py "택배사는 어디고 보통 며칠 걸려요?"     # 문의 하나를 처리
-streamlit run app.py                                   # 데모 화면 (http://localhost:8501)
-```
+`.env` 파일을 열어 `OPENAI_API_KEY=` 뒤에 키를 붙여 넣으세요. `.env`는 저장소에 올라가지 않아요.
 
-Windows에서 `streamlit` 명령을 못 찾으면 `python -m streamlit run app.py`로 실행하세요.
+### 3. 실행
 
-## 평가 실행
+| # | 하고 싶은 것 | 키 | 명령 | 이렇게 나오면 정상 |
+|---|---|---|---|---|
+| ① | 문서 쪼개기·근거 분리 확인 | 불필요 | `python context.py` | `분리됨 ✅` 4줄 |
+| ② | 파이프라인 구조도(Mermaid) | 불필요 | `python agent.py --graph` | `graph TD;`로 시작하는 코드 |
+| ③ | 문의 한 건 처리 | 필요 | `python agent.py "택배사는 어디고 보통 며칠 걸려요?"` | 답변과 `action=ANSWER tools=['get_shipping_info']` |
+| ③ | 데모 화면 | 필요 | `streamlit run app.py` | 브라우저에서 http://localhost:8501 |
+| ④ | 채점기 검증 | 필요 | `python evaluate.py --validate-judge` | `모범 답안 25건 중 통과 25 / 실패 0` |
+| ④ | 평가용 25건 측정 | 필요 | `python evaluate.py --tag run` | 도구 24/25 안팎, 답변 21/25 안팎 |
 
-```bash
-python evaluate.py --validate-judge     # 채점기를 모범 답안으로 먼저 검증
-python evaluate.py --tag run            # 평가용 25건 측정 → results/run.json
-python evaluate.py --rejudge run        # 저장된 결과를 현재 평가셋으로 다시 채점
-```
+- **점수는 실행마다 1건 정도 흔들려요.** 답변 20–23/25 범위면 보고서와 같은 결과예요(자세한 이유는 REPORT 4.6).
+- ④를 처음 하신다면 `--validate-judge`를 먼저 돌려 채점기가 정상인지 보세요. 두 번째 줄에 `통과(=잘못 통과) 1건 ['E-X-04']`처럼 1건 안팎이 나오는 건 알려진 현상이에요(이관 문항들의 필수 사실이 같아서 생겨요).
+- 결과는 `results/run.json`에 저장돼요. 20초 안팎이 걸려요.
+- 데모에서는 사이드바의 예시 문의나 아래쪽 카테고리 카드를 누르면 바로 실행돼요.
 
-측정에는 OpenAI API 호출이 들어가요. 25건 한 번에 20초 안팎이 걸려요.
+### 막혔을 때
+
+| 증상 | 해결 |
+|---|---|
+| `OPENAI_API_KEY가 없어요` | 2번을 하세요. `.env`는 프로젝트 폴더(이 README가 있는 곳)에 있어야 해요. |
+| 모델을 찾을 수 없다는 오류 | 계정에서 교안 모델이 안 열리는 거예요. `.env`에 `ROUTE_MODEL=`, `ANSWER_MODEL=`로 쓰는 모델을 지정하고 `ANSWER_REASONING=`(빈 값)으로 두세요. |
+| `streamlit`을 찾을 수 없음 (Windows) | `python -m streamlit run app.py`로 실행하세요. |
+| 콘솔에서 한글이 깨짐 | 명령 프롬프트는 `set PYTHONIOENCODING=utf-8`, PowerShell은 `$env:PYTHONIOENCODING="utf-8"`을 먼저 입력하세요. |
+| 데모 글꼴이 다르게 보임 | 오프라인이면 Pretendard 대신 시스템 글꼴로 나와요. 기능에는 영향이 없어요. |
+
+**확인한 환경**: Python 3.14.7, langchain 1.4.7, langchain-core 1.7.0, langchain-openai 1.7.3, langgraph 1.2.18, pydantic 2.13.5, python-dotenv 1.2.3, streamlit 1.66.1.
 
 ## 모델 설정
 
-기본값은 교안과 같은 등급이에요. 환경변수로 바꿀 수 있어요.
+기본값은 교안과 같은 등급이에요. `.env`에 아래 이름으로 적거나 환경변수로 지정하면 바꿀 수 있어요.
 
 | 환경변수 | 기본값 | 용도 |
 |---|---|---|

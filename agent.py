@@ -308,6 +308,13 @@ def stream_agent(question):
             yield node, update
 
 
+def require_api_key():
+    """키 없이 모델을 부르면 긴 오류 추적이 나오므로, 명령줄 도구는 먼저 이 안내를 보여 준다."""
+    if not os.environ.get("OPENAI_API_KEY"):
+        raise SystemExit("OPENAI_API_KEY가 없어요. .env.example을 .env로 복사해 키를 채워 주세요.\n"
+                         "키 없이 실행할 수 있는 것: python context.py, python agent.py --graph")
+
+
 def run_agent(question):
     """문의 하나를 파이프라인에 통과시킨다. 로그로 쓸 수 있게 상태를 그대로 돌려준다."""
     out = _app().invoke({"question": question})
@@ -319,6 +326,7 @@ if __name__ == "__main__":
     if "--graph" in sys.argv:
         print(build_agent().get_graph().draw_mermaid())
     else:
+        require_api_key()
         q = " ".join(a for a in sys.argv[1:]) or "택배사는 어디고 보통 며칠 걸려요?"
         r = run_agent(q)
         print(f'Q: {q}\nA: {r["answer"]}')
