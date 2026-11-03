@@ -185,7 +185,7 @@ def log_html(r):
         clauses = clause_tags(keys)
         clause_chips = "".join(f'<span class="jc-pill m">{esc(c)}</span>' for c in clauses) or \
             '<span class="jc-muted">없음</span>'
-        n_assumed = sum(len(re.findall(r"\[가정", SECTIONS[k])) for k in keys)
+        n_assumed = sum(len(re.findall(r"\[A[\],]|, A\]", SECTIONS[k])) for k in keys)
         docs = "".join(
             f'<details><summary>{esc(t)}</summary><pre>{esc(SECTIONS[k].split(chr(10), 1)[1]).replace(chr(10), "&#10;")}</pre></details>'
             for k, t in r["sections"])
