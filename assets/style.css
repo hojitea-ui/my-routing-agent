@@ -107,6 +107,10 @@ html, body, .stApp, [data-testid="stAppViewContainer"], .stMarkdown, button, inp
   min-height: 56px; padding: 0 18px; font-size: 16px; color: var(--jc-text);
   background: transparent;
 }
+/* 테두리가 있는 입력 상자(stTextInputRootElement)가 기본 40px라서, 56px 버튼과 높이가 안 맞고
+   안쪽 input만 56px로 넘쳤다. 상자 자체를 버튼과 같은 56px로 맞춘다. */
+[data-testid="stTextInputRootElement"] { height: 56px; box-sizing: border-box; align-items: center; }
+[data-testid="stTextInputRootElement"] input { height: 100%; min-height: 0; box-sizing: border-box; }
 [data-testid="stTextInput"] input::placeholder { color: var(--jc-text2); }
 div[data-baseweb="input"]:focus-within, [data-testid="stTextInput"] > div > div:focus-within {
   border-color: var(--jc-primary); box-shadow: 0 0 0 3px rgba(8, 127, 104, .15);
