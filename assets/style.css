@@ -284,3 +284,7 @@ div[data-baseweb="input"]:focus-within, [data-testid="stTextInput"] > div > div:
 .jc-empty { padding: 26px 20px; border: 1px dashed var(--jc-border); border-radius: var(--jc-radius); color: var(--jc-text2); font: 400 14px/1.6 var(--jc-font); text-align: center; background: rgba(255, 255, 255, .6); }
 [data-testid="stExpander"] { border: 1px solid var(--jc-border); border-radius: var(--jc-radius); background: var(--jc-surface); }
 [data-testid="stExpander"] summary { font: 600 13px/1.4 var(--jc-font); }
+
+/* 문서 원문(렌더링된 마크다운) 안의 제목이 본문보다 너무 커 보이지 않게 줄인다. */
+[data-testid="stExpander"] [data-testid="stMarkdownContainer"] h3 { font: 700 15px/1.5 var(--jc-font); margin: 14px 0 6px; padding: 0; color: var(--jc-text); }
+[data-testid="stExpander"] [data-testid="stMarkdownContainer"] li, [data-testid="stExpander"] [data-testid="stMarkdownContainer"] p { font-size: 14px; line-height: 1.7; }

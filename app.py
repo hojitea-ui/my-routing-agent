@@ -186,19 +186,16 @@ def log_html(r):
         clause_chips = "".join(f'<span class="jc-pill m">{esc(c)}</span>' for c in clauses) or \
             '<span class="jc-muted">없음</span>'
         n_assumed = sum(SECTIONS[k].count("ᴬ") for k in keys)
-        docs = "".join(
-            f'<details><summary>{esc(t)}</summary><pre>{esc(SECTIONS[k].split(chr(10), 1)[1]).replace(chr(10), "&#10;")}</pre></details>'
-            for k, t in r["sections"])
         ev = (f'<dt>Sections</dt><dd><div class="jc-chips">{chips}</div></dd>'
               f'<dt>Clauses</dt><dd><div class="jc-chips">{clause_chips}</div>'
               f'<div class="jc-muted" style="margin-top:6px">조회된 장에 달린 근거 꼬리표예요. 이 스토어가 정한 값(가정) {n_assumed}건이 함께 들어 있어요.</div></dd>')
     else:
-        docs, ev = "", '<dt>Sections</dt><dd class="jc-muted">조회한 근거 장이 없어요. 공통 장만 포함돼요.</dd>'
+        ev = '<dt>Sections</dt><dd class="jc-muted">조회한 근거 장이 없어요. 공통 장만 포함돼요.</dd>'
     s3 = rs("03", "EVIDENCE RETRIEVAL",
             '<dl class="jc-kv">'
             f'<dt>Tools</dt><dd><ul>{tool_li}</ul></dd>'
             f'<dt>Document</dt><dd>{DOC_NAME}<div class="jc-muted">원문 근거: 네이버 스마트스토어 판매 이용약관 ({TERMS_DATES})</div></dd>'
-            f'{ev}</dl>{docs}')
+            f'{ev}</dl>')
 
     g = r.get("guardrail")
     if g is None:
@@ -214,6 +211,22 @@ def log_html(r):
                 '<span class="jc-muted">위반이면 한 번 다시 쓰고, 그래도 위반이면 이관해요.</span></dd></dl>')
     s4 = rs("04", "VALIDATION RESULT", body)
     return f'<section class="jc-report" aria-label="실행 로그">{head}{s1}{s2}{s3}{s4}</section>'
+
+
+def render_docs(r, tabs=False):
+    """읽은 문서 원문을 마크다운으로 렌더링해 보여 준다. 이전 실행은 expander 안이라 탭으로 나눈다."""
+    if not r["sections"]:
+        return
+    items = [(title, SECTIONS[k].split(chr(10), 1)[1]) for k, title in r["sections"]]
+    st.caption("근거로 읽은 문서 원문 (조회된 장)")
+    if tabs:
+        for tab, (title, body) in zip(st.tabs([t for t, _ in items]), items):
+            with tab:
+                st.markdown(body)
+    else:
+        for title, body in items:
+            with st.expander(f"문서 원문 · {title}"):
+                st.markdown(body)
 
 
 # ── 실제 노드 상태로 스테퍼를 갱신한다 (가짜 진행 없음) ───────────────────────────────
@@ -365,6 +378,7 @@ else:
 with log_slot:
     if history:
         st.markdown(label(4, "EXECUTION LOG", "THIS RUN") + log_html(history[-1]), unsafe_allow_html=True)
+        render_docs(history[-1])
 
 active = history[-1].get("category") if history else None
 with cards_slot:
@@ -382,3 +396,4 @@ if len(history) > 1:
         for r in reversed(history[:-1]):
             with st.expander(f'{CATEGORY_INFO.get(r.get("category"), ("", "", "-", ""))[2]} · {r["question"]}'):
                 st.markdown(answer_html(r) + log_html(r), unsafe_allow_html=True)
+                render_docs(r, tabs=True)

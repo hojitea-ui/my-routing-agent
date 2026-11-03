@@ -73,6 +73,7 @@ cp .env.example .env            # Windows: copy .env.example .env
 | 모델을 찾을 수 없다는 오류 | 계정에서 교안 모델이 안 열리는 거예요. `.env`에 `ROUTE_MODEL=`, `ANSWER_MODEL=`로 쓰는 모델을 지정하고 `ANSWER_REASONING=`(빈 값)으로 두세요. |
 | `streamlit`을 찾을 수 없음 (Windows) | `python -m streamlit run app.py`로 실행하세요. |
 | 콘솔에서 한글이 깨짐 | 명령 프롬프트는 `set PYTHONIOENCODING=utf-8`, PowerShell은 `$env:PYTHONIOENCODING="utf-8"`을 먼저 입력하세요. |
+| `docs/policy.md`를 고쳤는데 데모에 옛 내용이 보임 | 데모 서버가 문서를 시작할 때 한 번만 읽어요. 서버를 끄고(`Ctrl+C`) 다시 실행하세요. |
 | 데모 글꼴이 다르게 보임 | 오프라인이면 Pretendard 대신 시스템 글꼴로 나와요. 기능에는 영향이 없어요. |
 
 **확인한 환경**: Python 3.14.7, langchain 1.4.7, langchain-core 1.7.0, langchain-openai 1.7.3, langgraph 1.2.18, pydantic 2.13.5, python-dotenv 1.2.3, streamlit 1.66.1.
