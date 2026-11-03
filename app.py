@@ -311,7 +311,7 @@ with st.sidebar:
     st.button("대화 지우기", key="clear", on_click=clear_history, use_container_width=True)
     st.markdown(
         '<dl class="jc-side-note">'
-        '<dt>Service</dt><dd>MODE:N(모든) — 용돈박스 + 옥 지압봉 스토어의 고객 문의를 분류하고, 필요한 근거만 읽고, '
+        '<dt>Service</dt><dd>Mode:N(모든) — 용돈박스 + 옥 지압봉 스토어의 고객 문의를 분류하고, 필요한 근거만 읽고, '
         '숫자까지 검증해서 답하는 AI 에이전트예요.</dd>'
         f'<dt>Reference</dt><dd>네이버 스마트스토어 판매 이용약관<br>{TERMS_DATES}</dd>'
         f'<dt>Models</dt><dd>분류 {ROUTE_MODEL}<br>답변 {ANSWER_MODEL}<br>이관 확신도 기준 {CONF_THRESHOLD}</dd>'
