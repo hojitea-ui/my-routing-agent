@@ -82,3 +82,33 @@ python evaluate.py --rejudge run        # 저장된 결과를 현재 평가셋�
 - **약관은 요약해서 재서술했어요.** 원문을 복사하지 않았어요. 출처는 문서 꼬리표(`[약관 제N조]`)와 부록 B에 있어요.
 - **점수는 실행마다 1건 정도 흔들려요.** 평가셋이 25건이라서, 한두 건 차이는 효과로 보지 않았어요(자세한 한계는 REPORT 4.6).
 - **데모는 실제 노드 상태를 보여 줘요.** 처리 단계 표시는 가짜 진행률이 아니라 그래프가 끝낸 노드를 반영해요.
+
+## 출처와 라이선스
+
+**근거 문서**
+- 네이버 스마트스토어 **판매 이용약관**(공지 2026-05-26, 적용 2026-06-29)과 **판매 이용규칙**: [스마트스토어센터](https://sell.smartstore.naver.com/#/terms/agreement)에 공개된 문서예요. 저작권은 네이버(주)와 네이버파이낸셜(주)에 있어요.
+- [docs/policy.md](docs/policy.md)는 위 약관을 **구매자 응대용으로 요약·재서술**한 것이고 원문을 복사하지 않았어요. 어느 문장이 어느 조항에서 왔는지는 문장 끝 꼬리표(`[약관 제N조]`)와 부록 B에 있어요. 약관 원문은 바뀔 수 있으니 실제 운영에는 최신 원문을 확인하세요.
+- 약관에 없는 가격, 사양, 택배사 같은 값은 이 프로젝트에서 정한 **가상값**(`[가정]`)이에요.
+- 설계 구조(분류 → 근거 조립 → 답변 → 검증, 평가 방식)는 수업 교안 「고객 응대 에이전트 만들기」를 참고했어요. 교안의 문서와 데이터는 이 저장소에 포함하지 않았어요.
+
+**폰트**
+- [Pretendard](https://github.com/orioncactus/pretendard) (SIL Open Font License 1.1). 데모 화면이 열릴 때 jsDelivr CDN에서 불러오고 파일은 저장소에 넣지 않았어요. 오프라인이면 시스템 한글 글꼴로 대체돼요.
+
+**아이콘**
+- 카테고리 카드의 아이콘은 `app.py`에 직접 작성한 단순 선 SVG예요. 외부 아이콘 라이브러리의 파일을 가져오지 않았어요.
+
+**주요 라이브러리** (설치 시 `pip`가 가져와요. 라이선스는 설치된 버전의 패키지 메타데이터 기준이에요)
+
+| 라이브러리 | 용도 | 라이선스 |
+|---|---|---|
+| [LangChain](https://github.com/langchain-ai/langchain), `langchain-openai` | 모델 호출, 도구 정의 | MIT |
+| [LangGraph](https://github.com/langchain-ai/langgraph) | 파이프라인 그래프 | MIT |
+| [Pydantic](https://github.com/pydantic/pydantic) | 구조화된 출력 스키마 | MIT |
+| [python-dotenv](https://github.com/theskumar/python-dotenv) | `.env` 읽기 | BSD-3-Clause |
+| [Streamlit](https://github.com/streamlit/streamlit) | 데모 화면 | Apache-2.0 |
+
+**모델과 API**
+- 분류·답변·채점에 OpenAI API를 써요. 모델과 API 사용에는 OpenAI의 이용약관이 적용돼요. API 키는 `.env`에만 두고 저장소에 올리지 않아요.
+
+**이 저장소의 코드**
+- 과제 제출용이고 별도 라이선스를 지정하지 않았어요.
