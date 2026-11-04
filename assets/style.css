@@ -186,9 +186,9 @@ div[data-baseweb="input"]:focus-within, [data-testid="stTextInput"] > div > div:
 .jc-empty ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
 .jc-empty li { padding-left: 14px; border-left: 2px solid var(--jc-primary); font-size: 13px; color: var(--jc-text2); }
 .jc-empty li b { display: block; color: var(--jc-text); font-size: 14px; }
-.jc-src { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--jc-border); font: 400 12px/1.4 var(--jc-font); color: var(--jc-text2); }
-.jc-src b { font: 600 10px/1 var(--jc-mono); letter-spacing: .1em; margin-right: 4px; }
-.jc-src span { padding: 3px 8px; border: 1px solid var(--jc-border); border-radius: 999px; }
+.jc-src { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--jc-border); font: 500 14px/1.4 var(--jc-font); color: var(--jc-text); }
+.jc-src b { font: 700 12px/1 var(--jc-mono); letter-spacing: .08em; margin-right: 6px; color: var(--jc-primary); }
+.jc-src span { padding: 5px 12px; border: 1px solid var(--jc-border); border-radius: 999px; background: rgba(8, 127, 104, .06); }
 .st-key-chips { margin: -4px 0 4px; }
 .st-key-chips button { min-height: 32px; padding: 4px 12px; font-size: 12.5px; border-radius: 999px; }
 .jc-card.oos { background: transparent; border-style: dashed; border-color: #5C6662; color: var(--jc-text); }
