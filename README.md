@@ -8,7 +8,9 @@
                        범위 밖 · 확신 낮음         근거 없음 → 이관(escalate)
 ```
 
-![데모 화면](docs/images/demo_answer.jpg)
+![데모 화면: 질문, 최종 답변, 처리 단계](docs/images/demo_answer.jpg)
+
+![데모 화면: 실행 로그와 카테고리 카드](docs/images/demo_log.jpg)
 
 ## 결과 한눈에 보기
 

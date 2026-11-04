@@ -36,7 +36,7 @@ CATEGORY_INFO = {
     "PRODUCT": ("02/04", "PRODUCT & USAGE", "상품·사용법", "지압봉·조화·용돈박스 사양, 사용법, 인증"),
     "SHIPPING": ("03/04", "SHIPPING & PACKAGING", "배송·포장", "발송 시기, 택배사, 배송비, 배송지"),
     "RETURN_REFUND": ("04/04", "RETURNS & REFUNDS", "교환·반품·환불", "신청 기간, 반품 배송비, 하자, 환불"),
-    "OTHER": ("OOS", "OUT OF SCOPE", "범위 밖", "상담원 이관 대상 문의"),
+    "OTHER": ("ETC", "OUT OF SCOPE", "범위 밖", "상담원 이관 대상 문의"),
 }
 CARD_ORDER = ["ORDER", "PRODUCT", "SHIPPING", "RETURN_REFUND", "OTHER"]
 TOOL_LABEL = {"get_order_info": "주문·구성 선택 근거 조회", "get_product_info": "상품·사용법 근거 조회",
