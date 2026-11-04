@@ -56,7 +56,7 @@ cp .env.example .env            # Windows: copy .env.example .env
 | ① | 문서 쪼개기·근거 분리 확인 | 불필요 | `python context.py` | `분리됨 ✅` 4줄 |
 | ② | 파이프라인 구조도(Mermaid) | 불필요 | `python agent.py --graph` | `graph TD;`로 시작하는 코드 |
 | ③ | 문의 한 건 처리 | 필요 | `python agent.py "택배사는 어디고 보통 며칠 걸려요?"` | 답변과 `action=ANSWER tools=['get_shipping_info']` |
-| ③ | 데모 화면 | 필요 | `streamlit run app.py` | 브라우저에서 http://localhost:8501 |
+| ③ | 데모 화면 | 필요 | `python -m streamlit run app.py` | 브라우저에서 http://localhost:8501 |
 | ④ | 채점기 검증 | 필요 | `python evaluate.py --validate-judge` | `모범 답안 25건 중 통과 25 / 실패 0` |
 | ④ | 평가용 25건 측정 | 필요 | `python evaluate.py --tag run` | 도구 23/25 안팎, 답변 22–23/25 안팎 |
 
@@ -71,7 +71,7 @@ cp .env.example .env            # Windows: copy .env.example .env
 |---|---|
 | `OPENAI_API_KEY가 없어요` | 2번을 하세요. `.env`는 프로젝트 폴더(이 README가 있는 곳)에 있어야 해요. |
 | 모델을 찾을 수 없다는 오류 | 계정에서 교안 모델이 안 열리는 거예요. `.env`에 `ROUTE_MODEL=`, `ANSWER_MODEL=`로 쓰는 모델을 지정하고 `ANSWER_REASONING=`(빈 값)으로 두세요. |
-| `streamlit`을 찾을 수 없음 (Windows) | `python -m streamlit run app.py`로 실행하세요. |
+| `streamlit` 명령을 찾을 수 없음 (PowerShell·명령 프롬프트) | `pip`가 설치한 실행 파일 폴더가 PATH에 없어서 생겨요. 위 ③처럼 `python -m streamlit run app.py`로 실행하면 PATH와 상관없이 돼요. |
 | 콘솔에서 한글이 깨짐 | 명령 프롬프트는 `set PYTHONIOENCODING=utf-8`, PowerShell은 `$env:PYTHONIOENCODING="utf-8"`을 먼저 입력하세요. |
 | `docs/policy.md`를 고쳤는데 데모에 옛 내용이 보임 | 데모 서버가 문서를 시작할 때 한 번만 읽어요. 서버를 끄고(`Ctrl+C`) 다시 실행하세요. |
 | 데모 글꼴이 다르게 보임 | 오프라인이면 Pretendard 대신 시스템 글꼴로 나와요. 기능에는 영향이 없어요. |
