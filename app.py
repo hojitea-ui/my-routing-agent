@@ -63,6 +63,7 @@ EXAMPLES = [it["question"] for it in FEWSHOT][:6] + [
     "선물 포장하고 메시지 카드까지 넣으면 지압봉 세트가 얼마예요?",
     "이거 쓰면 관절염이 나을까요?",
 ]
+CHIP_QUERIES = ["배송은 며칠 걸려요?", "반품 배송비는요?", "선물 포장 되나요?"]
 
 
 # ── HTML 조각 (한 줄로 만든다: 빈 줄이 있으면 마크다운이 HTML 블록을 끊는다) ─────────
@@ -141,13 +142,26 @@ PENDING_HTML = ('<section class="jc-final" role="status" aria-live="polite"><div
                 '<div class="jc-wait">분류하고 근거를 읽는 중이에요. 아래 단계가 실제 진행 상태예요.</div></section>')
 
 
+EMPTY_HTML = ('<div class="jc-empty"><p class="lead">문의를 넣으면 이렇게 답해요.</p><ul>'
+              '<li><b>근거 문서만 사용</b>스토어 업무 문서에서 필요한 장만 읽어요.</li>'
+              '<li><b>숫자는 문서 값 그대로</b>금액·기간이 근거와 다르면 다시 쓰거나 상담원에게 넘겨요.</li>'
+              '<li><b>모르면 이관</b>근거가 없거나 범위 밖이면 추측하지 않고 상담원으로 연결해요.</li></ul></div>')
+
+
 def answer_html(r):
     """질문에 대한 답. 실행 로그보다 먼저, 가장 눈에 띄게 보여 준다."""
     tag = ('<span class="jc-tag light info">HANDOFF</span>' if r["action"] == "ESCALATE"
            else '<span class="jc-tag light ok">ANSWERED</span>')
     ans = esc(r["answer"]).replace("\n", "<br>")
+    titles = [t for _, t in r.get("sections", [])]
+    if titles:
+        src = (f'<div class="jc-src"><b>참고 근거</b>{"".join(f"<span>{esc(t)}</span>" for t in titles)}</div>')
+    elif r["action"] == "ESCALATE":
+        src = '<div class="jc-src"><b>근거</b><span>조회한 문서 없음 · 상담원이 이어서 확인해요</span></div>'
+    else:
+        src = ""
     return (f'<section class="jc-final" aria-label="최종 답변"><div class="jc-final-head">'
-            f'<span>{esc(r["question"])}</span>{tag}</div><div class="jc-answer">{ans}</div></section>')
+            f'<span>{esc(r["question"])}</span>{tag}</div><div class="jc-answer">{ans}</div>{src}</section>')
 
 
 def log_html(r):
@@ -345,6 +359,10 @@ with st.form("query_form", clear_on_submit=True, border=False):
     submitted = c_btn.form_submit_button("질문하기", type="primary", use_container_width=True, disabled=not online)
 if submitted and not text.strip():
     st.caption("문의를 입력해 주세요.")
+with st.container(key="chips"):
+    for col, q in zip(st.columns(len(CHIP_QUERIES)), CHIP_QUERIES):
+        col.button(q, key=f"chip_{q}", on_click=set_pending, args=(q,), disabled=not online,
+                   use_container_width=True)
 
 # 답변은 질문 입력창 바로 아래에 온다: 최종 답변 → 처리 상태 → 실행 로그 → 카테고리 카드 → 이전 기록
 answer_slot, proc_slot, log_slot, cards_slot, hist_slot = [st.container() for _ in range(5)]
@@ -369,8 +387,7 @@ elif history:
                     unsafe_allow_html=True)
 else:
     with answer_slot:
-        st.markdown(answer_block('<div class="jc-empty">아직 문의가 없어요. 위 입력창에 문의를 넣거나 '
-                                 '카드·예시 문의를 눌러 보세요.</div>'), unsafe_allow_html=True)
+        st.markdown(answer_block(EMPTY_HTML), unsafe_allow_html=True)
     with proc_slot:
         st.markdown(label(3, "AGENT PROCESSING", "WAITING FOR QUERY") + stepper_html(new_steps()),
                     unsafe_allow_html=True)
